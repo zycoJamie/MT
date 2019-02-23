@@ -23,7 +23,6 @@ export default {
 }
 </script>
 
-<style lang='css'>
-@import "@/assets/css/public/header.scss";
-@import "@/assets/css/public/layout.scss";
+<style lang='scss'>
+ @import "@/assets/css/public/header/index.scss";
 </style>

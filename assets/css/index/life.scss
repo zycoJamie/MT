@@ -1,4 +1,13 @@
 .m-life{
+    .my-slider{
+        height:240px;
+        width: auto;
+        margin: 10px;
+        img{
+          height: 240px;
+          width: auto;
+        }
+    }
     .m-life-pic{
         margin:10px 10px 10px 0;
         width:150px;
@@ -19,17 +28,28 @@
         .m-life-login-name {
           margin-bottom: 10px;
         }
-        button{
+        .register-btn{
+          width: 118px;
+          margin: 5px;
+        }
+        .login-btn{
           width: 118px;
           margin: 5px;
         }
         h4 {
+          font-weight: normal;
           img {
             width: 47px;
             height: 47px;
             border-radius: 50%;
             border: 4px solid #E5E5E5;
           }
+        }
+        img {
+          width: 47px;
+          height: 47px;
+          border-radius: 50%;
+          border: 4px solid #E5E5E5;
         }
 
         p>button {

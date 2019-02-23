@@ -4,10 +4,10 @@
         <li class="list">
             <nuxt-link to="/my">我的美团</nuxt-link>
             <dl>
-                <dd><nuxt-linke to="/order">我的订单</nuxt-linke></dd>
-                <dd><nuxt-linke to="/order">我的收藏</nuxt-linke></dd>
-                <dd><nuxt-linke to="/order">抵用券</nuxt-linke></dd>
-                <dd><nuxt-linke to="/order">账户设置</nuxt-linke></dd>
+                <dd><nuxt-link to="/order">我的订单</nuxt-link></dd>
+                <dd><nuxt-link to="/order">我的收藏</nuxt-link></dd>
+                <dd><nuxt-link to="/order">抵用券</nuxt-link></dd>
+                <dd><nuxt-link to="/order">账户设置</nuxt-link></dd>
             </dl>
         </li>
         <li class="order">
@@ -17,7 +17,7 @@
             <nuxt-link to="/center">商家中心</nuxt-link>
             <dl>
                 <dd>
-                    <nuxt-linke to="/userCenter">登录商家中心</nuxt-linke>
+                    <nuxt-link to="/userCenter">登录商家中心</nuxt-link>
                 </dd>
                 <dd>
                     <nuxt-link to="/coop">我想合作</nuxt-link>
