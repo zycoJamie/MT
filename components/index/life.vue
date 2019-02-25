@@ -17,9 +17,16 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col><div class="m-life-hotel"></div></el-col>
-      <el-col><div class="m-life-music"></div></el-col>
-      <el-col></el-col>
+      <el-col :span="7"><div class="m-life-hotel"></div></el-col>
+      <el-col :span="7"><div class="m-life-music"></div></el-col>
+      <el-col :span="4"><div class="m-life-coop"></div></el-col>
+      <el-col :span="6">
+        <div class="m-life-downapp">
+          <img src="//s1.meituan.net/bs/fe-web-meituan/60ac9a0/img/download-qr.png" alt="下载App" title="美团爱怕怕">
+          <h4>美团APP手机版</h4>
+          <h4><span>1元起</span> 吃喝玩乐</h4>
+        </div>
+      </el-col>
     </el-row>
   </div>
 </template>
