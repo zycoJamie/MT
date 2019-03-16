@@ -53,7 +53,23 @@ export default {
   layout: "blank",
   methods:{
       sendMsg:function(){
-
+        const self=this
+        let namePass
+        let emailPass
+        if(self.timerid){
+          return false
+        }
+        this.$refs['ruleForm'].validateField('name',(vaild)=>{
+          namePass=vaild
+        })
+        self.statusMsg=''
+        if(namePass){
+          return false
+        }
+        this.$refs['ruleForm'].validateField('email',(vaild)=>{
+          emailPass=vaild
+        })
+        
       },
       register(){
 

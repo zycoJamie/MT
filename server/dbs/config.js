@@ -13,10 +13,10 @@ export default{
             return 'smtp.qq.com'
         },
         get user(){
-            return '123456789@qq.com'
+            return ''
         },
         get pass(){
-            return 'aaaaaaaaa' //授权码
+            return '' //授权码
         }
     },
     get code(){
@@ -25,6 +25,6 @@ export default{
         }
     },
     get expire(){
-        return new Date().getTime()+60*60*1000
+        return new Date().getTime()+60*1000
     }
 }

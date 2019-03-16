@@ -1,4 +1,4 @@
-import passort from 'koa-passport'
+import passport from 'koa-passport'
 import LocalStrategy from 'passport-local'
 import UserModel from '../../dbs/models/users'
 
@@ -18,12 +18,12 @@ passport.use(new LocalStrategy(async function (username,password,done){
     }
 }))
 
-passort.serializeUser(function(user,done){
+passport.serializeUser(function(user,done){
     done(null,user)
 })
 
-passort.deserializeUser(function(user,done){
+passport.deserializeUser(function(user,done){
     return done(null,user)
 })
 
-export default passort
+export default passport
