@@ -60,6 +60,7 @@ router.post('/signup',async ctx=>{
         email
     })
     if(nuser){
+        console.log("自动登录")
         let res = await axios.post('/users/signin',{
             username,
             password
@@ -110,6 +111,7 @@ router.post('/signin',async (ctx,next)=>{
 })
 
 router.post('/verify',async (ctx,next)=>{
+    console.log('into verify')
     let username=ctx.request.body.username
     const saveExpire=await Store.hget(`nodemail:${username}`,'expire')
     if(saveExpire && new Date().getTime-saveExpire<0){

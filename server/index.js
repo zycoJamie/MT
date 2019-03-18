@@ -13,10 +13,10 @@ import users from './interface/users'
 
 const app = new Koa()
 
-app.keys=['mt','keys']
+app.keys=['mt','keys'] /* 设置签名cookie的密匙 */
 app.proxy=true
 app.use(session({
-  key:'mt',
+  key:'mt', /* 用cookie存储session，key为cookie的键，值(value)为加密后的session，将prefix和value结合，组成存储在redis的键 */
   prefix:'mt:uid',
   store:new Redis()
 }))

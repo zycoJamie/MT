@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import CryptoJS from 'crypto-js'
+import { setTimeout } from 'timers';
 export default {
   layout: "blank",
   methods:{
@@ -92,11 +94,37 @@ export default {
               }else{
                 self.statusMsg=data.msg
               }
+            }).catch(()=>{
+              console.log("网络请求异常")
             })
         }
       },
       register(){
-
+        let self=this
+        this.$refs['ruleForm'].validate(valid=>{
+          console.log(`register:valid => ${valid}`)
+          if(valid){
+            self.$axios.post('/users/signup',{
+              username:encodeURIComponent(self.ruleForm.name),
+              password:CryptoJS.MD5(self.ruleForm.pwd).toString(),
+              email:self.ruleForm.email,
+              code:self.ruleForm.code
+            }).then(({status,data})=>{
+              if(status===200){
+                if(data && data.code===0){
+                  location.href='/login'
+                }else{
+                  self.error=data.msg
+                }
+              }else{
+                self.error=`服务器出错，错误码:${status}`
+              }
+              setTimeout(()=>{
+                self.error=''
+              },1500)
+            })
+          }
+        })
       },
   },
   data(){

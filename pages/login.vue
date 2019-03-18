@@ -10,10 +10,10 @@
         alt="美团登录"
       >
       <el-form label-position="top" label-width="80px" :model="user" class="form">
-          <p class="tips"><i></i>异常</p>
+          <p v-if="error" class="tips"><i>{{error}}</i></p>
         <el-form-item label="账号登陆">
           <el-input v-model="user.name" placeholder="手机号/用户名/邮箱"></el-input>
-          <el-input v-model="user.pwd" placeholder="密码"></el-input>
+          <el-input v-model="user.pwd" placeholder="密码" type="password"></el-input>
           <a href="/forgetPassword" class="forget">忘记密码?</a>
           <el-button type="primary" size="large" class="btn-login" @click="login">登录</el-button>
         </el-form-item>
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import CryptoJS from 'crypto-js'
+import { setTimeout } from 'timers';
 export default {
   layout: "blank",
   data(){
@@ -42,12 +44,30 @@ export default {
           user:{
               name:'',
               pwd:'',
-          }
+          },
+          error:''
       }
   },
   methods:{
       login(){
-
+        let self=this
+        self.$axios.post('/users/signin',{
+          username:encodeURIComponent(self.user.name),
+          password:CryptoJS.MD5(self.user.pwd).toString()
+        }).then(({status,data})=>{
+          if(status===200){
+            if(data && data.code===0){
+              location.href='/'
+            }else{
+              self.error=data.msg
+            }
+          }else{
+            self.error=`服务器出错，错误码:${status}`
+          }
+        })
+        setTimeout(()=>{
+          self.error=''
+        },5000)
       }
   }
 };
