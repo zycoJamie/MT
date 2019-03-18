@@ -129,8 +129,8 @@ router.post('/verify',async (ctx,next)=>{
         }
     })
     let ko = {
-        code:Email.code,
-        expire:Email.smtp.expire,
+        code:Email.code(),
+        expire:Email.expire,
         email:ctx.request.body.email,
         user:ctx.request.body.username
     }

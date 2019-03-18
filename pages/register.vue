@@ -56,6 +56,7 @@ export default {
         const self=this
         let namePass
         let emailPass
+        console.log(self.timerid)
         if(self.timerid){
           return false
         }
@@ -63,13 +64,36 @@ export default {
           namePass=vaild
         })
         self.statusMsg=''
-        if(namePass){
+        if(namePass){ /* 有值代表校验不通过 */
           return false
         }
         this.$refs['ruleForm'].validateField('email',(vaild)=>{
           emailPass=vaild
         })
-        
+        if(!namePass && !emailPass){
+          self.$axios.post('/users/verify',{
+            username:encodeURIComponent(self.ruleForm.name),
+            email:self.ruleForm.email
+            }).then(({
+              status,
+              data
+            })=>{
+              if(status===200 && data && data.code===0){
+                let count=60
+                self.timerid=setInterval(function(){
+                  self.statusMsg=`验证码已发送，剩余${count}`
+                  --count
+                  if(count===0){
+                    self.statusMsg=''
+                    clearInterval(self.timerid)
+                    self.timerid=''
+                  }
+                },1000)
+              }else{
+                self.statusMsg=data.msg
+              }
+            })
+        }
       },
       register(){
 
