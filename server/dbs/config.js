@@ -26,5 +26,11 @@ export default{
     },
     get expire(){
         return new Date().getTime()+60*1000
+    },
+    get signUrl(){
+        return 'http://cp-tools.cn'
+    },
+    get sign(){
+        return 'a3c9fe0782107295ee9f1709edd15218'
     }
 }
