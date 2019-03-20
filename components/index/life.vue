@@ -10,9 +10,9 @@
       <el-col :span="6">
           <div class="m-life-login">
               <img :src="avatar"/>
-              <h4>Hi！你好</h4>
-              <el-button round class="register-btn">注册</el-button>
-              <el-button round class="login-btn">立即登录</el-button>
+              <h4>{{user}}</h4>
+              <el-button round class="register-btn" @click="signup">注册</el-button>
+              <el-button round class="login-btn" @click="signin">立即登录</el-button>
           </div>
       </el-col>
     </el-row>
@@ -39,8 +39,24 @@ export default {
   },
   data(){
       return {
-          avatar:'//s0.meituan.net/bs/fe-web-meituan/2d05c2b/img/avatar.jpg'
+          avatar:'//s0.meituan.net/bs/fe-web-meituan/2d05c2b/img/avatar.jpg',
+          user:'Hi！你好'
       }
+  },
+  async mounted(){
+    const self=this
+    const {status,data:{user}}=await self.$axios.get('/users/getUser')
+    if(status===200 && user!=''){
+      this.user=user
+    }
+  },
+  methods:{
+    signup(){
+      location.href='/register'
+    },
+    signin(){
+      location.href='/login'
+    }
   }
 };
 </script>
