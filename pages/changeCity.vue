@@ -1,7 +1,7 @@
 <template>
     <div class="page-changeCity">
         <el-row>
-            <el-col>1</el-col>
+            <el-col><i-select></i-select></el-col>
         </el-row>
         <el-row>
             <el-col>2</el-col>
@@ -13,8 +13,11 @@
 </template>
 
 <script>
+import iSelect from '@/components/changeCity/iselect'
 export default {
-    
+    components:{
+        iSelect
+    }
 }
 </script>
 

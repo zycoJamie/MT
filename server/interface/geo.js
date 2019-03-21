@@ -1,5 +1,6 @@
 import Router from 'koa-router'
 import axios from './utils/axios'
+import Config from '../dbs/config'
 import Province from '../dbs/models/provinces'
 
 const key = '' //高德开放平台apiKey
@@ -26,15 +27,37 @@ router.get('/getPosition', async ctx => {
 })
 
 router.get('/getProvince',async ctx=>{
-    let province=await Province.find()
+   /*  let province=await Province.find()
     province=province.map(item=>{
         return {
             code:item.code,
             name:item.name
         }
-    })
-    ctx.body={
-        provinces:province
+    }) */
+    
+    let {status,data:{province}}=await axios.get(`${Config.signUrl}/geo/province?sign=${Config.sign}`)
+    if(status===200){
+        ctx.body={
+            provinces:province
+        }
+    }else{
+        ctx.body={
+            provinces:[]
+        }
+    }
+    
+})
+
+router.get('/getProvince/:id',async ctx=>{
+    let {status,data:{city}}= await axios.get(`${Config.signUrl}/geo/province/${ctx.params.id}?sign=${Config.sign}`)
+    if(status===200){
+        ctx.body={
+            citys:city
+        }
+    }else{
+        ctx.body={
+            citys:[]
+        }
     }
 })
 
