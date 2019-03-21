@@ -2,6 +2,7 @@ import Router from 'koa-router'
 import axios from './utils/axios'
 import Config from '../dbs/config'
 import Province from '../dbs/models/provinces'
+import pinyin from 'pinyin'
 
 const key = '' //高德开放平台apiKey
 
@@ -57,6 +58,49 @@ router.get('/getProvince/:id',async ctx=>{
     }else{
         ctx.body={
             citys:[]
+        }
+    }
+})
+
+router.get('/city',async ctx=>{
+    let {status,data:{city}}= await axios.get(`${Config.signUrl}/geo/city?sign=${Config.sign}`)
+    if(status===200){
+        ctx.body={
+            city
+        }
+    }else{
+        ctx.body={
+            city:[]
+        }
+    }
+})
+
+router.get('/city/pinyin',async ctx=>{
+    let {status,data:{city}}= await axios.get(`${Config.signUrl}/geo/city?sign=${Config.sign}`)
+    if(status===200){
+        let cityPinyin=city.map(item=>{
+            let cat=''
+            pinyin(item.name,{
+                heteronym:true,
+                segment:true,
+                style:pinyin.STYLE_NORMAL
+            }).forEach(item=>{
+                if(item.length){
+                    cat=cat.concat(item[0])
+                }
+            })
+            return {
+                id:item.id,
+                name:item.name,
+                py:cat
+            }
+        })
+        ctx.body={
+            cityPinyin
+        }
+    }else{
+        ctx.body={
+            cityPinyin:[]
         }
     }
 })

@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+import pinyin from 'pinyin'
 export default {
   data(){
       return {
@@ -37,7 +39,9 @@ export default {
           pvalue:'',
           city:[],
           cvalue:'',
-          input:''
+          input:'',
+          allCities:[],
+          citypy:[]
       }
   },
   watch:{
@@ -71,11 +75,54 @@ export default {
       }
   },
   methods:{
-      querySearchAsync(){
-
-      },
-      handleSelect(){
-
+      querySearchAsync:_.debounce(async function(query,callback){
+          self=this
+          if(/^[a-zA-Z]{1,}$/g.test(query)){
+              query=query.toLowerCase()
+              if(self.citypy.length){
+                  let py=self.citypy.filter(item=>{
+                      return item.py.indexOf(query)!=-1
+                  })
+                  callback(py.map(item=>{
+                      return {
+                          value:item.name
+                      }
+                  }))
+              }else{
+                  let {status,data:{cityPinyin}}= await self.$axios.get(`/geo/city/pinyin`)
+                  if(status===200){
+                      self.citypy=cityPinyin
+                      let py=self.citypy.filter(item=>{
+                          return item.py.indexOf(query)!=-1
+                      })
+                      callback(py.map(item=>{return {value:item.name}}))
+                  }
+              }
+          }else{
+           if(self.allCities.length){
+              let cities=self.allCities.filter(item=>{
+                  return item.value.indexOf(query)!=-1
+              })
+              callback(cities)
+            }else{
+              let {status,data:{city}} = await self.$axios.get(`/geo/city`)
+              if(status===200){
+                  self.allCities=city.map(item=>{
+                      return {
+                          value:item.name,
+                      }
+                  })
+                  callback(self.allCities.filter(item=>item.value.indexOf(query)!=-1))
+              }else{
+                  self.allCities=[]
+                  callback([])
+              }
+            }   
+          }
+      },300),
+      handleSelect(item){
+          console.log(item.value)
+          location.href='/'
       }
   }
 };
