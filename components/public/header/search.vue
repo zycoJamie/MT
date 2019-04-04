@@ -15,10 +15,10 @@
                 <button class="el-button el-button--primary"><i class="el-icon-search"/></button>
                 <dl class="hotPlace" v-if="isHotPlace">
                     <dt>热门搜索</dt>
-                    <dd v-for="(item,idx) in hotPlace" :key="idx">{{item.name}}</dd>
+                    <dd v-for="(item,idx) in hotPlace" :key="idx"><a :href="'/products?keyword='+encodeURIComponent(item.name)">{{item.name}}</a></dd>
                 </dl>
                 <dl class="searchList" v-if="isSearchList">
-                    <dd v-for="(item,idx) in searchList" :key="idx">{{item.name}}</dd>
+                    <dd v-for="(item,idx) in searchList" :key="idx"><a :href="'/products?keyword='+encodeURIComponent(item.name)">{{item.name}}</a></dd>
                 </dl>
             </div>
             <p class="suggest">
@@ -27,7 +27,7 @@
                 <a href="#">南充白塔公园</a>
                 <a href="#">南充白塔公园</a>
                 <a href="#">南充白塔公园</a> -->
-                <a href="#" v-for="(item,idx) in hotPlace" :key="idx">{{item.name}}</a>
+                <a href="#" v-for="(item,idx) in hotPlace" :key="idx"><a :href="'/products?keyword='+encodeURIComponent(item.name)">{{item.name}}</a></a>
             </p>
             <ul class="nav">
                 <li>

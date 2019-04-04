@@ -36,7 +36,7 @@
                     <span class="detail-type">{{meta.scene}}</span>
                 </li>
                 <li v-else>
-                    <span class="detail-type">暂无描述</span>
+                    <span class="detail-type">景点</span>暂无描述
                 </li>
             </ul>
         </dd>

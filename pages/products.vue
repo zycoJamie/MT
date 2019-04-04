@@ -33,6 +33,7 @@ export default {
     },
     async asyncData(ctx){
         const keyword=ctx.query.keyword
+        console.log(keyword)
         const city=ctx.store.state.geo.position.city
         const {status,data:{count,pois}}=await ctx.$axios.get('/search/resultsByKeywords',{
             params:{
@@ -40,11 +41,13 @@ export default {
                 city
             }
         })
-        const {status2,data:{areas,types}}=await ctx.$axios.get('/category/crumbs',{
+        console.log(`city: ${city} count: ${count}`)
+        const {status:status2,data:{areas,types}}=await ctx.$axios.get('/category/crumbs',{
             params:{
                 city
             }
         })
+        console.log(`status: ${status} status2:${status2}`)
         if(status===200 && count >0 && status2===200){
             return {
                 list:pois.filter(item=>item.photos.length).map(item =>{

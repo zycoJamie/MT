@@ -13,6 +13,7 @@ router.get('/crumbs', async ctx => {
         sign:Config.sign
        }
     })
+    console.log(`crumbs: ${status}`)
     ctx.body = {
        areas: status === 200 ? areas : [],
        types: status === 200 ? types : []

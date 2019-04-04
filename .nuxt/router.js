@@ -2,11 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _381fd3db = () => interopDefault(import('..\\pages\\changeCity.vue' /* webpackChunkName: "pages_changeCity" */))
-const _7d083f84 = () => interopDefault(import('..\\pages\\exit.vue' /* webpackChunkName: "pages_exit" */))
-const _5bc802f9 = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages_login" */))
-const _6ee30743 = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages_register" */))
-const _dbbf403c = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
+const _31e457db = () => interopDefault(import('..\\pages\\changeCity.vue' /* webpackChunkName: "pages_changeCity" */))
+const _79f3643e = () => interopDefault(import('..\\pages\\exit.vue' /* webpackChunkName: "pages_exit" */))
+const _9b7e020e = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages_login" */))
+const _097234f8 = () => interopDefault(import('..\\pages\\products.vue' /* webpackChunkName: "pages_products" */))
+const _57f88b43 = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages_register" */))
+const _2ecd483c = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 Vue.use(Router)
 
@@ -70,23 +71,27 @@ export function createRouter() {
 
     routes: [{
       path: "/changeCity",
-      component: _381fd3db,
+      component: _31e457db,
       name: "changeCity"
     }, {
       path: "/exit",
-      component: _7d083f84,
+      component: _79f3643e,
       name: "exit"
     }, {
       path: "/login",
-      component: _5bc802f9,
+      component: _9b7e020e,
       name: "login"
     }, {
+      path: "/products",
+      component: _097234f8,
+      name: "products"
+    }, {
       path: "/register",
-      component: _6ee30743,
+      component: _57f88b43,
       name: "register"
     }, {
       path: "/",
-      component: _dbbf403c,
+      component: _2ecd483c,
       name: "index"
     }],
 
