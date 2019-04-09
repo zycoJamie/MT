@@ -8,7 +8,7 @@
 </template>
     
 <script>
-import Item from '@components/detail/item'
+import Item from '@/components/detail/item'
 export default {
     components:{
         Item
