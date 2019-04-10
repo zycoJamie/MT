@@ -13,7 +13,7 @@ export default {
     components:{
         Item
     },
-    prpos:{
+    props:{
         list:{
             type:Array,
             default:[]

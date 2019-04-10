@@ -59,6 +59,7 @@ export default {
                 city:ctx.store.state.geo.position.city
             }
         })
+        console.log("status:"+status+" list:"+JSON.stringify(list))
         if(status===200){
             return {
                 keyword,
